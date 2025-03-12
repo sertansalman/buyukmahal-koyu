@@ -66,12 +66,21 @@
 
     <section class="card">
         <h2>Köy Konumu</h2>
-        <iframe 
-            src="https://www.openstreetmap.org/export/embed.html?bbox=28.9784,41.0082,28.9785,41.0083&layer=mapnik" 
-            width="100%" 
-            height="300" 
-            style="border: 1px solid #ccc;">
-        </iframe>
+       <div id="map" style="width: 600px; height: 450px;"></div>
+<script>
+    function initMap() {
+        var map = L.map('map').setView([39.954651,  34.948051], 15); // Buraya köyünün enlem ve boylamını gir
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker([39.954651,  34.948051]).addTo(map) // Buraya da köyünün konumunu gir
+            .bindPopup('Büyükmahal Köyü')
+            .openPopup();
+    }
+    document.addEventListener("DOMContentLoaded", initMap);
+</script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     </section>
 </main>
 
